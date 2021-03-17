@@ -9,7 +9,7 @@ function Cards(props) {
             <img
               className="card-img-top"
               alt="Card image cap"
-              src={element.srcimage}
+              src={`https://image.tmdb.org/t/p/w342/${element.backdrop_path}`}
             />
 
             <div className="card-body">

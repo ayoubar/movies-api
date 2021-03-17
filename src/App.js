@@ -2,7 +2,7 @@ import Search from './components/Search';
 import Cards from './components/Cards';
 import React, { useState, useEffect } from 'react';
 
-const API_URL = 'https://api.themoviedb.org/3/'; // ENDPOINT
+const API_URL = 'https://api.themoviedb.org/3'; // ENDPOINT
 
 function App() {
   /* 
@@ -32,13 +32,8 @@ function App() {
 
       ? NB: faut enovyer le parametre api_key dans la requets
      */
+
   const [films, setFilms] = useState([
-    {
-      id: 1,
-      title: 'Spider man movie',
-      srcimage:
-        'https://image.tmdb.org/t/p/w342/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg',
-    },
     {
       id: 2,
       title: 'Hulk',
@@ -61,9 +56,19 @@ function App() {
 
   useEffect(() => {
     // todo: changer le titre du premier object dans `films`
-    // setFilms;
+    getMovies().then((data) => setFilms(data.results));
   }, []);
 
+  //
+  // async function
+  async function getMovies() {
+    const reponse = await fetch(
+      `${API_URL}/movie/popular?api_key=7e7346a600f3af0d821581f843c28779`
+    );
+
+    const data = await reponse.json();
+    return data;
+  }
   return (
     <>
       <Search />
