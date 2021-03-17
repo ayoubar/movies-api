@@ -24,6 +24,14 @@ function App() {
      todo: parcourir sur la props `movies` et retourner un paragraphe qui contient le titre 
   */
 
+  /*
+      !Etape 4
+      todo : crée  un fonction asynchrone dans `App` appelé `getPopularMovies`
+      todo: envoyer la requet http vers API_URL + `/movie/popular/` (fetch) 
+      todo : retourner les données necessaires et les stockers dans `films`
+
+      ? NB: faut enovyer le parametre api_key dans la requets
+     */
   const [films, setFilms] = useState([
     {
       id: 1,
