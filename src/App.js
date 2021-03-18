@@ -1,7 +1,10 @@
 import Search from './components/Search';
 import Cards from './components/Cards';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Router } from 'react-router-dom';
 
+import Login from './components/Login';
+import Movie from './components/movies/Movie';
 const API_URL = 'https://api.themoviedb.org/3'; // ENDPOINT
 
 function App() {
@@ -31,8 +34,21 @@ function App() {
       todo : retourner les données necessaires et les stockers dans `films`
 
       ? NB: faut enovyer le parametre api_key dans la requets
-     */
+    */
 
+  /*
+        ! Etape 5
+        todo : installer la bibliotheque react-router-dom
+        todo : importer les composantes necessaires depuis la bilbiothéque dans `App.js`
+  */
+
+  /*
+    ! Etape 6
+    todo: rendre les images cliquable (import Link depuis la biblio react-router-dom)
+    todo: crée un composant `componenets/movies/Movie.js`
+    todo: crée une route `/movie/id` qui va retourner le composant `Movie`
+
+  */
   const [films, setFilms] = useState([
     {
       id: 2,
@@ -70,12 +86,24 @@ function App() {
     return data;
   }
   return (
-    <>
-      <Search />
-      <div className="container mt-5">
-        <Cards movies={films} />
-      </div>
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Search />
+          <div className="container mt-5">
+            <Cards movies={films} />
+          </div>
+        </Route>
+
+        <Route exact path="/movie/:id">
+          <Movie />
+        </Route>
+
+        <Route exact path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
